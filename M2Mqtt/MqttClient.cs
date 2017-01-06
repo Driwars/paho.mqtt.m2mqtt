@@ -291,6 +291,19 @@ namespace uPLibrary.Networking.M2Mqtt
 #endif
         {
         }
+	    /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="brokerHostName">Broker Host Name or IP Address</param>
+	/// <param name="brokerPort">Broker port</param>
+        public MqttClient(string brokerHostName, int brokerPort) :
+#if !(WINDOWS_APP || WINDOWS_PHONE_APP)
+            this(brokerHostName, brokerPort, false, null, null, MqttSslProtocols.None)
+#else
+            this(brokerHostName, brokerPort, false, MqttSslProtocols.None)
+#endif
+        {
+        }
 
         /// <summary>
         /// Constructor
